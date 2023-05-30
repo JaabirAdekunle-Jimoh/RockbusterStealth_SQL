@@ -1,1 +1,80 @@
+PRESENTING DESCRIPTIVE STATISTICS (Customer table)
+SELECT	
+	MIN (customer_id) as min_customer_id,
+	MAX (customer_id) as max_customer_id,
+	MIN (store_id) as min_store_id,
+	MAX (store_id) as max_store_id,
+	MIN (address_id) as min_address_id,
+	MAX (address_id) as max_address_id,
+-- Summarising non-numeric values
+	MODE () WITHIN GROUP (ORDER BY activebool ) as mode_active,
+	MODE () WITHIN GROUP (ORDER BY first_name ) as mode_first_name 
+FROM customer
 
+PRESENTING DESCRIPTIVE STATISTICS (Film table)
+SELECT
+	MIN (film_id) as min_film_id,
+	MAX (film_id) as max_film_id,
+	MIN (release_year) as min_release_year,
+	MAX (release_year) as max_release_year,
+	AVG (release_year) as avg_release_year,
+	MIN (rental_duration) as min_rental_duration,
+	MAX (rental_duration) as max_rental_duration,
+	AVG (rental_duration) as avg_rental_duration,
+	MIN (rental_rate) as min_rental_rate,
+	MAX (rental_rate) as max_rental_rate,
+	AVG (rental_rate) as avg_rental_rate,
+	MIN (length) as min_length,
+	MAX (length) as max_length,
+	AVG (length) as avg_length,
+	MIN (replacement_cost) as min_replacement_cost,
+	MAX (replacement_cost) as max_replacement_cost,
+	AVG (replacement_cost) as avg_replacement_cost,
+--Summarising the non-numeric values
+	MODE () WITHIN GROUP (ORDER BY language_id ) as mode_language,
+	MODE () WITHIN GROUP (ORDER BY rating) as mode_rate
+FROM film
+
+TOP 10 COUNTRIES BY CUSTOMER NUMBER
+SELECT D. country, COUNT (A.customer_id) AS number_of_customers
+FROM customer A
+	INNER JOIN address B ON A.address_id=B.address_id
+	INNER JOIN city C ON B.city_id=C.city_id
+	INNER JOIN country D ON C.country_id=D.country_id
+GROUP BY country
+ORDER BY number_of_customers DESC
+LIMIT 10
+
+Top 10 CITIES IN TOP 10 COUNTRIES
+SELECT C.city, D. country, 
+COUNT (A.customer_id) AS number_of_customers
+FROM customer A
+	INNER JOIN address B ON A.address_id=B.address_id
+	INNER JOIN city C ON B.city_id=C.city_id
+	INNER JOIN country D ON C.country_id=D.country_id
+WHERE country IN ('India','China','United States','Japan','Mexico','Brazil',
+				  'Russian Federation','Philippines','Turkey','Indonesia')
+GROUP BY city,country 
+ORDER BY number_of_customers DESC
+LIMIT 10
+
+
+COMMON TABLE EXPRESSIONS
+The Average amount paid by the top 5 customers
+
+WITH average_amount_cte (customer_id, first_name, last_name, address, city, country, total_amount_paid) AS
+  (SELECT A.customer_id, A.first_name, A.last_name, B.address, C.city, D.country, 
+  SUM(E.amount) AS total_amount_paid
+  FROM customer A
+  INNER JOIN address B ON A.address_id = B.address_id
+  INNER JOIN city C ON B.city_id = C.city_id
+  INNER JOIN country D ON C.country_id = D.country_id
+  INNER JOIN payment E ON  A.customer_id = E.customer_id
+  WHERE city IN ('Aurora', 'Atlixco', 'Xintai', 'Adoni', 'Dhule (Dhulia)',
+                  'Kurashiki', 'Pingxiang','Sivas', 'Celaya', 'So Leopoldo')
+GROUP BY A.customer_id, first_name, last_name, address, city, country
+ORDER BY total_amount_paid DESC
+LIMIT 5)
+SELECT AVG( total_amount_paid) AS average_amount_paid
+FROM average_amount_cte
+      
