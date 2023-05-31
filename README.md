@@ -24,7 +24,8 @@ Here are the main questions they’d like to answer:
 
 ## Data 
 
-The dataset comprises a database with the following tables:
+The database has the following tables:
+
 payment
 rental
 store
