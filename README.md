@@ -1,8 +1,9 @@
 # Solid-StartCF
-SQL repo
+
 This is about how Rockbuster Stealth management can use existing movie licenses to launch an online video rental service in order to stay competitive.
 
-Here are the main questions they’d like to answer:
+
+## Here are the main questions they’d like to answer:
 
 ● Which movies contributed the most/least to revenue gain? 
 [Tableau link](https://public.tableau.com/views/TopTenMoviesbyRevenue/Sheet2?:language=en-US&:display_count=n&:origin=viz_share_link)
@@ -18,3 +19,5 @@ Here are the main questions they’d like to answer:
 
 ● Do sales figures vary between geographic regions?
 [Tableau link](https://public.tableau.com/views/SalesbyGreographicRegions/Sheet7?:language=en-US&:display_count=n&:origin=viz_share_link)
+
+##
