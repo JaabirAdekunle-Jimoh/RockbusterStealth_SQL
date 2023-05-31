@@ -3,7 +3,9 @@
 This is about how Rockbuster Stealth management can use existing movie licenses to launch an online video rental service in order to stay competitive.
 
 
-## Here are the main questions they’d like to answer:
+## Key Questions and Objectives
+The Rockbuster Stealth Management Board has asked a series of business questions and they expect data-driven answers that they can use for their company strategy. 
+Here are the main questions they’d like to answer:
 
 ● Which movies contributed the most/least to revenue gain? 
 [Tableau link](https://public.tableau.com/views/TopTenMoviesbyRevenue/Sheet2?:language=en-US&:display_count=n&:origin=viz_share_link)
@@ -20,4 +22,21 @@ This is about how Rockbuster Stealth management can use existing movie licenses 
 ● Do sales figures vary between geographic regions?
 [Tableau link](https://public.tableau.com/views/SalesbyGreographicRegions/Sheet7?:language=en-US&:display_count=n&:origin=viz_share_link)
 
-##
+## Data 
+
+The dataset comprises a database with the following tables:
+payment
+rental
+store
+film_actor
+inventory
+film_category
+customer
+staff
+actor
+film
+category
+language
+address
+city
+country
