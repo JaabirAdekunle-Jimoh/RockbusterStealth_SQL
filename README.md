@@ -27,17 +27,31 @@ Here are the main questions they’d like to answer:
 The database has the following tables:
 
 payment
+
 rental
+
 store
+
 film_actor
+
 inventory
+
 film_category
+
 customer
+
 staff
+
 actor
+
 film
+
 category
+
 language
+
 address
+
 city
+
 country
