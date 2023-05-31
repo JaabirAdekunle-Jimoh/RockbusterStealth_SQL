@@ -1,4 +1,4 @@
-PRESENTING DESCRIPTIVE STATISTICS (Customer table)
+# PRESENTING DESCRIPTIVE STATISTICS (Customer table)
 SELECT	
 	MIN (customer_id) as min_customer_id,
 	MAX (customer_id) as max_customer_id,
@@ -11,7 +11,7 @@ SELECT
 	MODE () WITHIN GROUP (ORDER BY first_name ) as mode_first_name 
 FROM customer
 
-PRESENTING DESCRIPTIVE STATISTICS (Film table)
+# PRESENTING DESCRIPTIVE STATISTICS (Film table)
 SELECT
 	MIN (film_id) as min_film_id,
 	MAX (film_id) as max_film_id,
@@ -35,7 +35,7 @@ SELECT
 	MODE () WITHIN GROUP (ORDER BY rating) as mode_rate
 FROM film
 
-TOP 10 COUNTRIES BY CUSTOMER NUMBER
+# TOP 10 COUNTRIES BY CUSTOMER NUMBER
 SELECT D. country, COUNT (A.customer_id) AS number_of_customers
 FROM customer A
 	INNER JOIN address B ON A.address_id=B.address_id
@@ -45,7 +45,7 @@ GROUP BY country
 ORDER BY number_of_customers DESC
 LIMIT 10
 
-Top 10 CITIES IN TOP 10 COUNTRIES
+# Top 10 CITIES IN TOP 10 COUNTRIES
 SELECT C.city, D. country, 
 COUNT (A.customer_id) AS number_of_customers
 FROM customer A
@@ -59,8 +59,8 @@ ORDER BY number_of_customers DESC
 LIMIT 10
 
 
-COMMON TABLE EXPRESSIONS
-The Average amount paid by the top 5 customers
+# COMMON TABLE EXPRESSIONS
+## The Average amount paid by the top 5 customers
 
 WITH average_amount_cte (customer_id, first_name, last_name, address, city, country, total_amount_paid) AS
   (SELECT A.customer_id, A.first_name, A.last_name, B.address, C.city, D.country, 
@@ -78,7 +78,7 @@ LIMIT 5)
 SELECT AVG( total_amount_paid) AS average_amount_paid
 FROM average_amount_cte
 
-How many of the top 5 customers are based within each country?
+## How many of the top 5 customers are based within each country?
 
 WITH top_customer_count_cte (customer_id,first_name, last_name,address,city,country,total_amount_paid) AS
 (SELECT A.cutomer_id, A. first_name, A.last_name, B.address, C.city, D.country,
